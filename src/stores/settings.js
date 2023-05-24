@@ -1,61 +1,62 @@
-import { defineStore } from 'pinia';
-import { LocalStorage } from 'quasar';
-import { copyObj } from 'src/utils/tools';
-import { ref, watch } from 'vue';
+import { defineStore } from "pinia";
+import { LocalStorage } from "quasar";
+import { copyObj } from "src/utils/tools";
+import { ref, watch } from "vue";
 
 const API_TYPE = {
   OPENAI: "openai",
   AZURE: "azure",
+  MILCOS: "milcos",
 };
 
-const apiTypeOption = [
-  "openai",
-  "azure",
-];
-
+const apiTypeOption = ["openai", "azure", "milcos"];
 
 const initChat = {
-  systemPrompt: '你是ChatGPT，你的回答将用markdown展示。',
+  systemPrompt: "你是ChatGPT，你的回答将用markdown展示。",
   contextSize: 10,
-}
+};
 const initApi = {
-  api: 'https://api.openai.com',
-  key: '',
+  // api: "https://api.openai.com",
+  api: "http://140.99.221.108:80",
+  key: "",
   customApi: true,
   model: "gpt-3.5-turbo",
-  apiType: API_TYPE.OPENAI,
+  // apiType: API_TYPE.OPENAI,
+  apiType: API_TYPE.MILCOS,
   azureVersion: "2023-03-15-preview",
-  azureEngine: ""
-}
-const chat = ref(copyObj(initChat))
-const api = ref(copyObj(initApi))
+  azureEngine: "",
+};
+const chat = ref(copyObj(initChat));
+const api = ref(copyObj(initApi));
 
-const CHAT_SETTINGS = "chat-settings"
-const API_SETTINGS = "api-settings"
+const CHAT_SETTINGS = "chat-settings";
+const API_SETTINGS = "api-settings";
 
-
-function mergeObjects (obj1, obj2) {
+function mergeObjects(obj1, obj2) {
   return { ...obj1, ...obj2 };
 }
 
-function initSetting (setting, localKey, initVal) {
-  const localVal = LocalStorage.getItem(localKey)
-  setting.value = mergeObjects(setting.value, localVal)
-  watch(setting.value, (newVal) => {
-    LocalStorage.set(localKey, newVal)
-  }, { immediate: true })
+function initSetting(setting, localKey, initVal) {
+  const localVal = LocalStorage.getItem(localKey);
+  setting.value = mergeObjects(setting.value, localVal);
+  watch(
+    setting.value,
+    (newVal) => {
+      LocalStorage.set(localKey, newVal);
+    },
+    { immediate: true }
+  );
 
   // return resetFunc
   return function () {
     setting.value = copyObj(initVal);
-    LocalStorage.set(localKey, setting.value)
-  }
+    LocalStorage.set(localKey, setting.value);
+  };
 }
 
-export const useSettingsStore = defineStore('settings', () => {
+export const useSettingsStore = defineStore("settings", () => {
+  const resetChat = initSetting(chat, CHAT_SETTINGS, initChat);
+  const resetApi = initSetting(api, API_SETTINGS, initApi);
 
-  const resetChat = initSetting(chat, CHAT_SETTINGS, initChat)
-  const resetApi = initSetting(api, API_SETTINGS, initApi)
-
-  return { chat, api, resetChat, resetApi, API_TYPE, apiTypeOption }
-})
+  return { chat, api, resetChat, resetApi, API_TYPE, apiTypeOption };
+});

@@ -2,7 +2,7 @@
   <q-page class="column justify-center content-center items-center q-gutter-lg">
     <div class="text-h3 text-weight-medium">ChatGPT</div>
     <div class="text-h6 text-weight-medium">
-      <q-btn
+      <!-- <q-btn
         href="https://github.com/zzjcool/fastgo-chat"
         target="fastgo-chat"
         no-caps
@@ -10,7 +10,7 @@
         flat
         unelevated
         >zzjcool/fastgo-chat</q-btn
-      >
+      > -->
     </div>
   </q-page>
 </template>

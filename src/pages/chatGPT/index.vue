@@ -92,7 +92,7 @@
             </div> </q-popup-edit
         ></q-btn>
         <q-form
-          style="height: 50px;"
+          style="height: 50px"
           class="col bg-white row items-center shadow-2 shadow-transition rounded-borders main-width"
         >
           <div class="self-end" style="height: 50px">
@@ -135,7 +135,13 @@ import { sendMessageWrap } from "src/api/chat";
 import { useChatStore } from "src/stores/chat";
 import { useMetaStore } from "src/stores/meta";
 import { useSettingsStore } from "src/stores/settings";
-import { defineAsyncComponent, defineComponent, nextTick, ref,onMounted } from "vue";
+import {
+  defineAsyncComponent,
+  defineComponent,
+  nextTick,
+  ref,
+  onMounted,
+} from "vue";
 import BlankPage from "./blankPage.vue";
 import FabBtn from "./fab.vue";
 import MenuBtn from "./menu.vue";
@@ -219,8 +225,9 @@ export default defineComponent({
 
       oldMsg = msg.value;
       msg.value = "";
+
       sendMessageWrap(
-        sendMessages,
+        oldMsg,
         (rec) => {
           messages.value[messages.value.length - 1].content =
             messages.value[messages.value.length - 1].content.concat(rec);
@@ -229,9 +236,9 @@ export default defineComponent({
           switch (event) {
             case "DONE":
               scrollToEnd();
-              if (messages.value[messages.value.length - 1].content == '') {
-                onError()
-                break
+              if (messages.value[messages.value.length - 1].content == "") {
+                onError();
+                break;
               }
               chat.saveMsgs();
               break;
@@ -253,7 +260,6 @@ export default defineComponent({
     };
 
     let vh = ref(window.innerHeight);
-
 
     return {
       messages,
