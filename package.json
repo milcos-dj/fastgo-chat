@@ -1,9 +1,9 @@
 {
   "name": "fast-front",
   "version": "0.0.1",
-  "description": "Fast Go Chat",
-  "productName": "FastGo",
-  "author": "zzj<email@zzj.cool>",
+  "description": "Milcos Chat",
+  "productName": "MilcosChat",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "quasar dev",

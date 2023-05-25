@@ -6,7 +6,7 @@
       "name": "dev",
       "internalConsoleOptions": "openOnFirstSessionStart",
       "env": {
-        "API_ADDRESS": "https://api.fastgo.run"
+        "API_ADDRESS": "https://api.milcos.cn"
       },
       "request": "launch",
       "command": "npm run dev",

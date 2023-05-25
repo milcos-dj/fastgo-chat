@@ -5,7 +5,7 @@
     height-hint="98"
   >
     <q-toolbar class="row justify-between">
-      <div class="text-h6">fastgo</div>
+      <div class="text-h6">milcosChat</div>
       <q-toolbar-title class="col-auto">
         <div class="row justify-center items-center">
           <img

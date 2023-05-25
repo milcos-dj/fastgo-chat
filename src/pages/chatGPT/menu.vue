@@ -209,7 +209,7 @@
                   /> </q-item-section
                 ><q-item-section>清空对话记录</q-item-section>
               </q-item>
-
+              <!-- 
               <q-item href="https://github.com/zzjcool/fastgo-chat" target="fastgo-chat" clickable v-close-popup>
                 <q-item-section avatar>
                   <q-icon
@@ -217,7 +217,7 @@
                     name="link"
                   /> </q-item-section
                 ><q-item-section>Github项目：zzjcool/fastgo-chat</q-item-section>
-              </q-item>
+              </q-item> -->
             </q-list>
           </q-card>
         </q-scroll-area>
